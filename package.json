@@ -1,0 +1,49 @@
+{
+  "name": "gogs-utils",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "dotenv nodemon ./bin/www",
+    "eslint": "eslint . --ext .js",
+    "create:env-file": "node bin/create-env-file"
+  },
+  "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "async": "^2.6.1",
+    "async-optics": "^1.1.0",
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.1",
+    "debug": "^3.1.0",
+    "dotenv": "^5.0.1",
+    "highland": "^2.13.0",
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^4.0.0",
+    "koa-morgan": "^1.0.1",
+    "koa-mount": "^3.0.0",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.3",
+    "lodash": "^4.17.10",
+    "mysql2": "^1.5.3",
+    "objection": "^1.1.10",
+    "split": "^1.0.1",
+    "winston": "^2.4.2"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^1.4.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "nodemon": "^1.17.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint",
+      "pre-push": "npm run test:unit"
+    }
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  }
+}

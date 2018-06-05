@@ -1,0 +1,42 @@
+extends ../../../layouts/sbadmin2
+
+block script
+  script(src='//cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/mode-mysql.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/snippets/mysql.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/theme-monokai.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ext-language_tools.js')
+  script(src='/static/js/query.js')
+
+block style
+  style.
+    .ace-editor {
+      border: 1px solid lightgray;
+      margin: auto;
+      width: 100%;
+    }
+
+block main
+  form(method='POST' action='/query')
+    .row
+      .col-lg-12
+        h1.page-header Massive Query Executor
+    each database in Object.keys(databases)
+      .row
+        .form-group
+          label.col-sm-2.control-label= `${database}:`
+          .col-sm-10
+            select.multi-select.form-control(multiple hidden name=`database==${database}`)
+              each schema in databases[database]
+                option= schema
+
+    br
+
+    .row
+      .form-group
+        input.form-control(placeholder='Query name' name='queryName' required)
+      .form-group
+        #query-editor.ace-editor(style='min-height: 100px')
+        textarea(name='query' hidden)
+
+    button.btn.btn-primary(type='submit') Submit
